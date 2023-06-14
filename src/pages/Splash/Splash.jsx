@@ -1,15 +1,22 @@
-import React from "react";
-import ErrorMessage from "../../components/commons/errorMessage/ErrorMessage";
-import ProfileImg from "../../components/commons/profileImg/ProfileImg";
-import img from "../../img/ProfileImg.svg"
+import React, { useState } from "react";
+import DataInput from "../../components/commons/dataInput/DataInput";
+import UserInput from "../../components/commons/dataInput/UserInput";
+import PostModal from "../../components/commons/postModal/PostModal";
 
 export default function Splash() {
+  const [isOpen, setIsOpen] = useState(false);
 
+  const toggleModal = () => {
+    setIsOpen(!isOpen);
+  };
   return (
     <>
-      <div>Splash</div>
-      <ErrorMessage>에러</ErrorMessage>
-      <ProfileImg className="large" src={img} alt="이미지"/>
+      <button onClick={toggleModal}>Open Bottom Sheet</button>
+      <PostModal isOpen={isOpen} onClose={toggleModal}>
+        {/* Content of the bottom sheet */}
+        <h1>Bottom Sheet Modal</h1>
+        <p>This is the content of the bottom sheet.</p>
+      </PostModal>
     </>
   );
 }
